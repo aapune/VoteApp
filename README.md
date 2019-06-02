@@ -12,6 +12,10 @@ MySQL 8
 
 
 
+
+
+Please run Springboot class- VoteApplication to run project.
+
 Developed by :
 Aniruddha Anikhindi
 Email :  aa.pune@gmail.com
