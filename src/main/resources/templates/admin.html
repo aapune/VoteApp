@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="common/header :: common-header"/>
+<body roleId="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+<head th:replace="common/header :: navbar"/>
+
+
+<div class="container main">
+	<div class="alert alert-success" th:if="${successVote != null}">
+	 <span style="font-size: 11pt;text-align: left" th:text="${successVote}"></span>
+	</div>
+	<div class="alert alert-error" th:if="${errorVote != null}">
+	 <span style="font-size: 11pt;text-align: left" th:text="${errorVote}"></span>
+	</div>
+    <div class="row">
+        <div class="col-lg-12">
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-6 col-md-6">   
+        <form class = "form-horizontal" method="post">   
+	        <div class="form-group">
+    			<table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Voting Subject</th>
+                    <th>Vote</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="vote : ${voteList}">
+						<td  th:text="${vote.voter_fullname}"></td>
+						<td  th:text="${vote.vote_subject}"></td>
+						<td  th:text="${vote.vote_option}"></td>
+                    </tr>   
+            
+                </tbody>
+			 </table>
+			    
+		  </div>
+		  </form>
+        </div>
+
+    </div>
+    <!-- /.row -->
+
+
+</div>
+
+
+<div th:replace="common/header :: body-bottom-scripts"/>
+
+</body>
+</html>

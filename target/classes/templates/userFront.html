@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="common/header :: common-header"/>
+<body roleId="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+<head th:replace="common/header :: navbar"/>
+
+
+<div class="container main">
+	<div class="alert alert-success" th:if="${successVote != null}">
+	 <span style="font-size: 11pt;text-align: left" th:text="${successVote}"></span>
+	</div>
+	<div class="alert alert-error" th:if="${errorVote != null}">
+	 <span style="font-size: 11pt;text-align: left" th:text="${errorVote}"></span>
+	</div>
+    <div class="row">
+        <div class="col-lg-12">
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-6 col-md-6">   
+        <form class = "form-horizontal" method="post" th:action="@{/votesubmit}" th:object="${voteBean}">   
+	        <div class="form-group">
+    			<a class="navbar-brand page-scroll">Please select subject topics for voting:</a>
+			    <div class="col-md-6 selectContainer">
+			        <div class="input-group">			             
+			                <select name="subject" roleId="subject" id="subject" th:field="${voteBean.subList}" class="form-control selectpicker" >
+			                <option th:each="sub : ${voteBean.subList}"
+			                    th:value="${sub.id}"
+			                    th:text="${sub.description}"></option>
+			            	</select>
+			            
+			        </div>
+			        <br></br>
+			        
+			        
+			        <div class="input-group">
+			                <select name="voteoptions" roleId="voteoptions" id="voteoptions"
+			                th:field="${voteBean.voteOptList}" class="form-control selectpicker" >
+			                <option th:each="opt : ${voteBean.voteOptList}"
+			                    th:value="${opt.id}"
+			                    th:text="${opt.description}"></option>
+			            	</select>
+			        </div>
+			        <br></br>
+			        
+			          <div class="form-group ">		  
+			          	       	
+                    	<button type="submit" class="btn btn-primary btn-lg btn-block login-button">Register Vote</button>
+                	</div>
+			        
+			    </div>
+		  </div>
+		  </form>
+        </div>
+
+    </div>
+    <!-- /.row -->
+
+
+</div>
+
+
+<div th:replace="common/header :: body-bottom-scripts"/>
+
+</body>
+</html>

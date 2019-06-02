@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="common/header :: common-header" />
+<link rel="stylesheet" type="text/css" media="screen" href="/css/screen.css" />
+<body roleId="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+<!--<head th:replace="common/header :: navbar" />-->
+<div id="header" class="container_16">
+    <h1 id="logo-text"><a href="http://all-free-download.com/free-website-templates/">VoteApp</a></h1>
+    <p id="intro">voting simplified</p>
+    <div id="header-image"></div>
+</div>
+    
+
+<div class="alert alert-danger" th:if="${errorList != null}">
+    <h4 align="left">Errors:</h4>
+    <ul style="font-size: 11pt;text-align: left">
+       <li th:each="error : ${errorList}" th:text="${error}"></li>
+    </ul>
+</div>
+
+<div class="alert alert-success" th:if="${successSave != null}">
+ <span style="font-size: 11pt;text-align: left" th:text="${successSave}"></span>
+</div>
+
+<div class="container">
+    <div class="row main">
+        <div class="panel-heading">
+          
+                <h1>Register for VoteApp</h1>
+                <hr />
+           	       <div class="featured-post">
+          				<h4><a href="index">Login to VoteApp</a></h4>
+         			</div>
+		
+		<div class="main-login main-center">
+            <form class = "form-horizontal" method="post" th:action="@{/signup}" th:object="${user}">
+                <div class="form-group">
+                    <label for="firstName" class="form-control">First Name</label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                            <input type="text" class="form-control" th:field="*{firstName}" th:value="${user.firstName}" id="firstName" name="firstName" roleId="firstname"  placeholder="Enter your first name" required="required"/>
+                        	<span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">Name Error</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="lastName" class="form-control">Last Name</label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                            <input type="text" class="form-control" th:value="${user.lastName}" id="lastName" name="lastName" roleId="lastName"  placeholder="Enter your last name" required="required"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email" class="form-control">Your Email</label><span class="bg-danger pull-right" th:if="${emailExists}">Email already exists</span>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                            <input type="text" class="form-control" th:value="${user.email}" id="email" name="email" roleId="email"  placeholder="Enter your Email" required="required"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="username" class="form-control">Username</label><span class="bg-danger pull-right" th:if="${usernameExists}">Username already exists</span>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+                            <input type="text" class="form-control" th:value="${user.username}" id="username" name="username" roleId="username"  placeholder="Enter your Username" required="required"/>
+                        </div>
+                    </div>
+                </div>
+	
+
+                <div class="form-group">
+                    <label for="password" class="form-control">Password</label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                            <input type="password" class="form-control" th:value="${user.password}" id="password" name="password" roleId="password"  placeholder="Enter your Password" required="required"/>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input id="showPassword" type="checkbox" />Show Password
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                 <!--  <div class="form-group">
+                    <label for="password" class="form-control">Confirm Password</label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                            <input type="password" class="form-control" th:value="${user.confPassword}" id="confPassword" name="confPassword" roleId="confPassword"  placeholder="Confirm your Password" required="required"/>
+                        </div>
+                        
+                    </div>
+                </div>-->
+                   
+                
+                <div class="form-group ">
+                    <button type="submit" class="btn btn-primary btn-lg btn-block login-button">Register</button>
+                </div>
+                
+                <hr />
+                
+				<div class="form-group ">
+                    <a  class="btn btn-info btn-lg btn-block login-button" th:href="@{/}">Cancel</a>
+                </div>
+            </form>
+           </div>
+       </div>
+    </div>
+</div>
+
+
+<div th:replace="common/header :: body-bottom-scripts" />
+
+</body>
+</html>
